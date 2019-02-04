@@ -9,10 +9,12 @@ def main():
     print(a.size)
     print(a.data)
     print(a._check_bounds(-1))
+    print(a._check_bounds(0))
     print(a._check_bounds(9))
     print(a._check_increase())
     b = Array()
     print(b.data)
+    print(a._check_decrease())
 
 
 main()

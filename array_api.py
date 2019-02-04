@@ -19,7 +19,7 @@ class Array(object):
 
     def _check_bounds(self, index):
         '''Ensures the index is within the bounds of the array: 0 <= index <= size.'''
-        if index < 0 or index > (len(self.data) - 1):
+        if index < 0 or index > self.size:
             return False
             # raise ValueError("Out of Bounds error, negative index provided to array")
             # raise ValueError("Out of Bounds error, index provided outside the size of the array")
@@ -39,6 +39,10 @@ class Array(object):
         If a decrease is warranted, it should be done by allocating a new array and copying the
         data into it (don't allocate multiple arrays if multiple chunks need decreasing).
         '''
+        empty = sum(x is None for x in self.data)
+        chunks_to_remove = empty / self.chunk_size
+        print(empty)
+        print(chunks_to_remove)
 
     def add(self, item):
         '''Adds an item to the end of the array, allocating a larger array if necessary.'''
