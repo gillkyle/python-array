@@ -19,12 +19,7 @@ class Array(object):
 
     def _check_bounds(self, index):
         '''Ensures the index is within the bounds of the array: 0 <= index <= size.'''
-        if index < 0 or index > self.size:
-            return False
-            # raise ValueError("Out of Bounds error, negative index provided to array")
-            # raise ValueError("Out of Bounds error, index provided outside the size of the array")
-        else:
-            return True
+        return 0 <= index <= self.size
 
     def _check_increase(self):
         '''
@@ -46,17 +41,39 @@ class Array(object):
 
     def add(self, item):
         '''Adds an item to the end of the array, allocating a larger array if necessary.'''
-        # _check_increase
+        # _check_increase to see if it's full
+        if self._check_increase():
+            print("allocate more")
+        else:
+            self.data[self.size] = item
+            self.size += 1
 
     def insert(self, index, item):
         '''Inserts an item at the given index, shifting remaining items right and allocating a larger array if necessary.'''
         # _check_increase
+        if self._check_increase():
+            print("noop")
+            # allocate more room
+        else:
+            print("noop")
+            # simply insert the new item in its place and shift the rest over
 
     def set(self, index, item):
         '''Sets the given item at the given index.  Throws an exception if the index is not within the bounds of the array.'''
+        if self._check_bounds(index) and index != self.size:
+            self.data[index] = item
+        else:
+            raise ValueError(
+                "Error: item not set, index outside of array bounds")
+        return None
 
     def get(self, index):
         '''Retrieves the item at the given index.  Throws an exception if the index is not within the bounds of the array.'''
+        if self._check_bounds(index) and index != self.size:
+            return self.data[index]
+        else:
+            raise ValueError(
+                "Error: item not found, index outside of array bounds")
 
     def delete(self, index):
         '''Deletes the item at the given index, decreasing the allocated memory if needed.  Throws an exception if the index is not within the bounds of the array.'''
