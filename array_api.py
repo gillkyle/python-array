@@ -45,21 +45,17 @@ class Array(object):
         if self._check_increase():
             print("allocate more")
             self.data = memcpy(alloc(self.size + self.chunk_size), self.data)
-            self.data[self.size] = item
-            self.size += 1
-        else:
-            self.data[self.size] = item
-            self.size += 1
+        self.data[self.size] = item
+        self.size += 1
 
     def insert(self, index, item):
         '''Inserts an item at the given index, shifting remaining items right and allocating a larger array if necessary.'''
         # _check_increase
         if self._check_increase():
-            print("noop")
-            # allocate more room
-        else:
-            print("noop")
-            # simply insert the new item in its place and shift the rest over
+            print("allocate more for insert")
+            self.data = memcpy(alloc(self.size + self.chunk_size), self.data)
+        self.data = self.data[:index] + [item] + self.data[index:-1]
+        self.size += 1
 
     def set(self, index, item):
         '''Sets the given item at the given index.  Throws an exception if the index is not within the bounds of the array.'''
