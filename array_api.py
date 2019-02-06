@@ -79,6 +79,7 @@ class Array(object):
 
     def swap(self, index1, index2):
         '''Swaps the values at the given indices.'''
+        self.data[index1], self.data[index2] = self.data[index2], self.data[index1]
 
 
 ###################################################

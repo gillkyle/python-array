@@ -17,6 +17,8 @@ def main():
     a.set(0, 1)
     a.set(4, 5)
     a.debug_print()
+    a.swap(0, 4)
+    a.debug_print()
 
     # print(a.data)
     # a.set(0, "Hello")
