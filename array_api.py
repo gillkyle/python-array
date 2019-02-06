@@ -68,7 +68,7 @@ class Array(object):
             self.data[index] = item
         else:
             raise ValueError(
-                "Error: item not set, index outside of array bounds")
+                "item not set, index outside of array bounds")
         return None
 
     def get(self, index):
@@ -77,10 +77,16 @@ class Array(object):
             return self.data[index]
         else:
             raise ValueError(
-                "Error: item not found, index outside of array bounds")
+                "item not found, index outside of array bounds")
 
     def delete(self, index):
         '''Deletes the item at the given index, decreasing the allocated memory if needed.  Throws an exception if the index is not within the bounds of the array.'''
+        if self._check_bounds(index):
+            self.data = self.data[:index] + self.data[index+1:] + [None]
+            self.size -= 1
+            self._check_decrease()
+        else:
+            raise ValueError("item not deleted, index outside of array bounds")
 
     def swap(self, index1, index2):
         '''Swaps the values at the given indices.'''
