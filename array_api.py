@@ -24,7 +24,7 @@ class Array(object):
         if 0 <= index < self.size:
             return True
         raise ValueError(
-            "{} is not within the bounds of the current array.".format(index))
+            "{} is not within the bounds of the current array. {}".format(index, self.data))
 
     def _check_increase(self):
         '''
@@ -86,6 +86,8 @@ class Array(object):
 
     def swap(self, index1, index2):
         '''Swaps the values at the given indices.'''
+        self._check_bounds(index1)
+        self._check_bounds(index2)
         self.data[index1], self.data[index2] = self.data[index2], self.data[index1]
 
 
