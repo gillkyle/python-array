@@ -14,6 +14,8 @@ def main():
     print(a.size)
     a.insert(2, "OOOH 2")
     print(a.data)
+    a.set(0, 1)
+    a.set(4, 5)
     a.debug_print()
 
     # print(a.data)
