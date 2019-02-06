@@ -19,7 +19,7 @@ class Array(object):
 
     def _check_bounds(self, index):
         '''Ensures the index is within the bounds of the array: 0 <= index <= size.'''
-        return 0 <= index <= self.size
+        return 0 <= index < self.size
 
     def _check_increase(self):
         '''
@@ -60,7 +60,7 @@ class Array(object):
 
     def set(self, index, item):
         '''Sets the given item at the given index.  Throws an exception if the index is not within the bounds of the array.'''
-        if self._check_bounds(index) and index != self.size:
+        if self._check_bounds(index):
             self.data[index] = item
         else:
             raise ValueError(
@@ -69,7 +69,7 @@ class Array(object):
 
     def get(self, index):
         '''Retrieves the item at the given index.  Throws an exception if the index is not within the bounds of the array.'''
-        if self._check_bounds(index) and index != self.size:
+        if self._check_bounds(index):
             return self.data[index]
         else:
             raise ValueError(
