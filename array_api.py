@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from math import floor
 
 
 class Array(object):
@@ -34,10 +35,14 @@ class Array(object):
         If a decrease is warranted, it should be done by allocating a new array and copying the
         data into it (don't allocate multiple arrays if multiple chunks need decreasing).
         '''
-        empty = sum(x is None for x in self.data)
-        chunks_to_remove = empty / self.chunk_size
-        print(empty)
-        print(chunks_to_remove)
+        empty = len(self.data) - self.size
+        chunks_to_remove = floor(empty / self.chunk_size)
+        # verify that there is at least one chunk to deallocate
+        if chunks_to_remove < 1:
+            return
+        # remove empty elements on right end of the array
+        new_array = self.data[:-(self.chunk_size * chunks_to_remove)]
+        self.data = new_array
 
     def add(self, item):
         '''Adds an item to the end of the array, allocating a larger array if necessary.'''
@@ -97,6 +102,4 @@ def memcpy(dest, source, size=0):
     Copies items from one array to another.  This is similar to C's memcpy function.
     '''
     new = source[:]
-    new.extend(dest[len(source):])
-    print(new)
-    return new
+    return new.extend(dest[len(source):])

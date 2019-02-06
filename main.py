@@ -18,6 +18,10 @@ def main():
     a.set(4, 5)
     a.swap(0, 4)
     a.debug_print()
+    a._check_decrease()
+    a.debug_print()
+    a._check_decrease()
+    a.debug_print()
 
 
 main()
