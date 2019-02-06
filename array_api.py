@@ -44,6 +44,9 @@ class Array(object):
         # _check_increase to see if it's full
         if self._check_increase():
             print("allocate more")
+            self.data = memcpy(alloc(self.size + self.chunk_size), self.data)
+            self.data[self.size] = item
+            self.size += 1
         else:
             self.data[self.size] = item
             self.size += 1
@@ -92,7 +95,11 @@ def alloc(size):
     return [None] * size
 
 
-def memcpy(dest, source, size):
+def memcpy(dest, source, size=0):
     '''
     Copies items from one array to another.  This is similar to C's memcpy function.
     '''
+    new = source[:]
+    new.extend(dest[len(source):])
+    print(new)
+    return new
